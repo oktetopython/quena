@@ -1,0 +1,1327 @@
+
+<!DOCTYPE html>
+<html xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta property="og:image" content="http://iotic.com/flutomat/img/flutomat1.jpg"/>
+	<title>Flutomat</title>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/main.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src='js/jcanvas.min.js'></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+<div class="header"><div class="container"><a href="/"><img class="iotic-logo" src="img/iotic-logo.png" /></a></div></div>
+<div class="container main-content">
+	<form class="form-horizontal">
+		<div class="row">
+			<div class="col-sm-3">
+				<h1><a href="./" class="ident">Flutomat</a><sup><a href="#" data-toggle="modal" data-target="#info-modal"><i class="glyphicon glyphicon-info-sign"></i></a></sup></h1>
+			</div>
+			<div class="col-sm-9">
+				<canvas id="flute-canvas"></canvas>
+			</div>
+		</div>
+		<div class="table-responsive noscroll">
+			<table class="table" id="holes-table">
+				<thead>
+				<tr>
+					<th><input type="text" tabindex="1" spellcheck="false" class="form-control text" id="title" name="title" /></th>
+					<th><div><span>Cents</span></div></th>
+					<th><div><span>Diameter</span></div></th>
+					<th class="distance"><div><span>Distance</span></div></th>
+					<th class="spacing"><div><span>Spacing</span></div></th>
+					<th class="freq"><div><span>f<sub>0</sub> (Hz)</span></div></th>
+					<th class="freq"><div><span>Cutoff (Hz)</span></div></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="hole-row" id="hole-row-0">
+					<th>Blow hole</th>
+					<td></td>
+					<td><input type="text" class="form-control diameter measure 3d-info" id="diamEmb" name="diamEmb" tabindex="101" /></td>
+					<td><input type="text" class="form-control distance measure 3d-info" readonly id="resultEmb" name="resultEmb" tabindex="202" /></td>
+					<td class="spacing"></td>
+					<td class="freq"></td>
+					<td class="freq"></td>
+				</tr>
+									<tr class="hole-row" id="hole-row-1">
+						<th>Finger hole 1</th>
+						<td><input type="text" class="form-control" id="cents1" name="cents1" tabindex="1" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam1" name="diam1" tabindex="102" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result1" name="result1" tabindex="203" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing1" name="spacing1" tabindex="304" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq1" name="freq1" tabindex="405" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff1" name="cutoff1"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-2">
+						<th>Finger hole 2</th>
+						<td><input type="text" class="form-control" id="cents2" name="cents2" tabindex="2" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam2" name="diam2" tabindex="103" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result2" name="result2" tabindex="204" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing2" name="spacing2" tabindex="305" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq2" name="freq2" tabindex="406" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff2" name="cutoff2"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-3">
+						<th>Finger hole 3</th>
+						<td><input type="text" class="form-control" id="cents3" name="cents3" tabindex="3" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam3" name="diam3" tabindex="104" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result3" name="result3" tabindex="205" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing3" name="spacing3" tabindex="306" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq3" name="freq3" tabindex="407" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff3" name="cutoff3"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-4">
+						<th>Finger hole 4</th>
+						<td><input type="text" class="form-control" id="cents4" name="cents4" tabindex="4" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam4" name="diam4" tabindex="105" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result4" name="result4" tabindex="206" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing4" name="spacing4" tabindex="307" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq4" name="freq4" tabindex="408" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff4" name="cutoff4"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-5">
+						<th>Finger hole 5</th>
+						<td><input type="text" class="form-control" id="cents5" name="cents5" tabindex="5" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam5" name="diam5" tabindex="106" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result5" name="result5" tabindex="207" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing5" name="spacing5" tabindex="308" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq5" name="freq5" tabindex="409" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff5" name="cutoff5"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-6">
+						<th>Finger hole 6</th>
+						<td><input type="text" class="form-control" id="cents6" name="cents6" tabindex="6" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam6" name="diam6" tabindex="107" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result6" name="result6" tabindex="208" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing6" name="spacing6" tabindex="309" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq6" name="freq6" tabindex="410" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff6" name="cutoff6"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-7">
+						<th>Finger hole 7</th>
+						<td><input type="text" class="form-control" id="cents7" name="cents7" tabindex="7" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam7" name="diam7" tabindex="108" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result7" name="result7" tabindex="209" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing7" name="spacing7" tabindex="310" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq7" name="freq7" tabindex="411" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff7" name="cutoff7"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-8">
+						<th>Finger hole 8</th>
+						<td><input type="text" class="form-control" id="cents8" name="cents8" tabindex="8" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam8" name="diam8" tabindex="109" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result8" name="result8" tabindex="210" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing8" name="spacing8" tabindex="311" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq8" name="freq8" tabindex="412" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff8" name="cutoff8"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-9">
+						<th>Finger hole 9</th>
+						<td><input type="text" class="form-control" id="cents9" name="cents9" tabindex="9" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam9" name="diam9" tabindex="110" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result9" name="result9" tabindex="211" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing9" name="spacing9" tabindex="312" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq9" name="freq9" tabindex="413" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff9" name="cutoff9"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-10">
+						<th>Finger hole 10</th>
+						<td><input type="text" class="form-control" id="cents10" name="cents10" tabindex="10" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam10" name="diam10" tabindex="111" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result10" name="result10" tabindex="212" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing10" name="spacing10" tabindex="313" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq10" name="freq10" tabindex="414" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff10" name="cutoff10"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-11">
+						<th>Finger hole 11</th>
+						<td><input type="text" class="form-control" id="cents11" name="cents11" tabindex="11" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam11" name="diam11" tabindex="112" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result11" name="result11" tabindex="213" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing11" name="spacing11" tabindex="314" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq11" name="freq11" tabindex="415" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff11" name="cutoff11"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-12">
+						<th>Finger hole 12</th>
+						<td><input type="text" class="form-control" id="cents12" name="cents12" tabindex="12" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam12" name="diam12" tabindex="113" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result12" name="result12" tabindex="214" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing12" name="spacing12" tabindex="315" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq12" name="freq12" tabindex="416" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff12" name="cutoff12"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-13">
+						<th>Finger hole 13</th>
+						<td><input type="text" class="form-control" id="cents13" name="cents13" tabindex="13" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam13" name="diam13" tabindex="114" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result13" name="result13" tabindex="215" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing13" name="spacing13" tabindex="316" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq13" name="freq13" tabindex="417" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff13" name="cutoff13"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-14">
+						<th>Finger hole 14</th>
+						<td><input type="text" class="form-control" id="cents14" name="cents14" tabindex="14" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam14" name="diam14" tabindex="115" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result14" name="result14" tabindex="216" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing14" name="spacing14" tabindex="317" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq14" name="freq14" tabindex="418" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff14" name="cutoff14"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-15">
+						<th>Finger hole 15</th>
+						<td><input type="text" class="form-control" id="cents15" name="cents15" tabindex="15" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam15" name="diam15" tabindex="116" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result15" name="result15" tabindex="217" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing15" name="spacing15" tabindex="318" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq15" name="freq15" tabindex="419" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff15" name="cutoff15"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-16">
+						<th>Finger hole 16</th>
+						<td><input type="text" class="form-control" id="cents16" name="cents16" tabindex="16" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam16" name="diam16" tabindex="117" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result16" name="result16" tabindex="218" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing16" name="spacing16" tabindex="319" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq16" name="freq16" tabindex="420" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff16" name="cutoff16"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-17">
+						<th>Finger hole 17</th>
+						<td><input type="text" class="form-control" id="cents17" name="cents17" tabindex="17" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam17" name="diam17" tabindex="118" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result17" name="result17" tabindex="219" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing17" name="spacing17" tabindex="320" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq17" name="freq17" tabindex="421" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff17" name="cutoff17"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-18">
+						<th>Finger hole 18</th>
+						<td><input type="text" class="form-control" id="cents18" name="cents18" tabindex="18" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam18" name="diam18" tabindex="119" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result18" name="result18" tabindex="220" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing18" name="spacing18" tabindex="321" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq18" name="freq18" tabindex="422" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff18" name="cutoff18"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-19">
+						<th>Finger hole 19</th>
+						<td><input type="text" class="form-control" id="cents19" name="cents19" tabindex="19" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam19" name="diam19" tabindex="120" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result19" name="result19" tabindex="221" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing19" name="spacing19" tabindex="322" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq19" name="freq19" tabindex="423" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff19" name="cutoff19"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-20">
+						<th>Finger hole 20</th>
+						<td><input type="text" class="form-control" id="cents20" name="cents20" tabindex="20" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam20" name="diam20" tabindex="121" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result20" name="result20" tabindex="222" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing20" name="spacing20" tabindex="323" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq20" name="freq20" tabindex="424" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff20" name="cutoff20"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-21">
+						<th>Finger hole 21</th>
+						<td><input type="text" class="form-control" id="cents21" name="cents21" tabindex="21" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam21" name="diam21" tabindex="122" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result21" name="result21" tabindex="223" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing21" name="spacing21" tabindex="324" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq21" name="freq21" tabindex="425" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff21" name="cutoff21"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-22">
+						<th>Finger hole 22</th>
+						<td><input type="text" class="form-control" id="cents22" name="cents22" tabindex="22" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam22" name="diam22" tabindex="123" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result22" name="result22" tabindex="224" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing22" name="spacing22" tabindex="325" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq22" name="freq22" tabindex="426" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff22" name="cutoff22"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-23">
+						<th>Finger hole 23</th>
+						<td><input type="text" class="form-control" id="cents23" name="cents23" tabindex="23" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam23" name="diam23" tabindex="124" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result23" name="result23" tabindex="225" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing23" name="spacing23" tabindex="326" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq23" name="freq23" tabindex="427" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff23" name="cutoff23"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-24">
+						<th>Finger hole 24</th>
+						<td><input type="text" class="form-control" id="cents24" name="cents24" tabindex="24" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam24" name="diam24" tabindex="125" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result24" name="result24" tabindex="226" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing24" name="spacing24" tabindex="327" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq24" name="freq24" tabindex="428" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff24" name="cutoff24"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-25">
+						<th>Finger hole 25</th>
+						<td><input type="text" class="form-control" id="cents25" name="cents25" tabindex="25" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam25" name="diam25" tabindex="126" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result25" name="result25" tabindex="227" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing25" name="spacing25" tabindex="328" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq25" name="freq25" tabindex="429" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff25" name="cutoff25"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-26">
+						<th>Finger hole 26</th>
+						<td><input type="text" class="form-control" id="cents26" name="cents26" tabindex="26" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam26" name="diam26" tabindex="127" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result26" name="result26" tabindex="228" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing26" name="spacing26" tabindex="329" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq26" name="freq26" tabindex="430" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff26" name="cutoff26"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-27">
+						<th>Finger hole 27</th>
+						<td><input type="text" class="form-control" id="cents27" name="cents27" tabindex="27" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam27" name="diam27" tabindex="128" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result27" name="result27" tabindex="229" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing27" name="spacing27" tabindex="330" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq27" name="freq27" tabindex="431" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff27" name="cutoff27"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-28">
+						<th>Finger hole 28</th>
+						<td><input type="text" class="form-control" id="cents28" name="cents28" tabindex="28" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam28" name="diam28" tabindex="129" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result28" name="result28" tabindex="230" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing28" name="spacing28" tabindex="331" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq28" name="freq28" tabindex="432" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff28" name="cutoff28"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-29">
+						<th>Finger hole 29</th>
+						<td><input type="text" class="form-control" id="cents29" name="cents29" tabindex="29" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam29" name="diam29" tabindex="130" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result29" name="result29" tabindex="231" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing29" name="spacing29" tabindex="332" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq29" name="freq29" tabindex="433" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff29" name="cutoff29"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-30">
+						<th>Finger hole 30</th>
+						<td><input type="text" class="form-control" id="cents30" name="cents30" tabindex="30" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam30" name="diam30" tabindex="131" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result30" name="result30" tabindex="232" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing30" name="spacing30" tabindex="333" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq30" name="freq30" tabindex="434" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff30" name="cutoff30"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-31">
+						<th>Finger hole 31</th>
+						<td><input type="text" class="form-control" id="cents31" name="cents31" tabindex="31" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam31" name="diam31" tabindex="132" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result31" name="result31" tabindex="233" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing31" name="spacing31" tabindex="334" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq31" name="freq31" tabindex="435" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff31" name="cutoff31"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-32">
+						<th>Finger hole 32</th>
+						<td><input type="text" class="form-control" id="cents32" name="cents32" tabindex="32" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam32" name="diam32" tabindex="133" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result32" name="result32" tabindex="234" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing32" name="spacing32" tabindex="335" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq32" name="freq32" tabindex="436" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff32" name="cutoff32"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-33">
+						<th>Finger hole 33</th>
+						<td><input type="text" class="form-control" id="cents33" name="cents33" tabindex="33" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam33" name="diam33" tabindex="134" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result33" name="result33" tabindex="235" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing33" name="spacing33" tabindex="336" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq33" name="freq33" tabindex="437" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff33" name="cutoff33"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-34">
+						<th>Finger hole 34</th>
+						<td><input type="text" class="form-control" id="cents34" name="cents34" tabindex="34" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam34" name="diam34" tabindex="135" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result34" name="result34" tabindex="236" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing34" name="spacing34" tabindex="337" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq34" name="freq34" tabindex="438" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff34" name="cutoff34"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-35">
+						<th>Finger hole 35</th>
+						<td><input type="text" class="form-control" id="cents35" name="cents35" tabindex="35" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam35" name="diam35" tabindex="136" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result35" name="result35" tabindex="237" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing35" name="spacing35" tabindex="338" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq35" name="freq35" tabindex="439" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff35" name="cutoff35"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-36">
+						<th>Finger hole 36</th>
+						<td><input type="text" class="form-control" id="cents36" name="cents36" tabindex="36" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam36" name="diam36" tabindex="137" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result36" name="result36" tabindex="238" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing36" name="spacing36" tabindex="339" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq36" name="freq36" tabindex="440" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff36" name="cutoff36"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-37">
+						<th>Finger hole 37</th>
+						<td><input type="text" class="form-control" id="cents37" name="cents37" tabindex="37" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam37" name="diam37" tabindex="138" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result37" name="result37" tabindex="239" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing37" name="spacing37" tabindex="340" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq37" name="freq37" tabindex="441" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff37" name="cutoff37"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-38">
+						<th>Finger hole 38</th>
+						<td><input type="text" class="form-control" id="cents38" name="cents38" tabindex="38" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam38" name="diam38" tabindex="139" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result38" name="result38" tabindex="240" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing38" name="spacing38" tabindex="341" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq38" name="freq38" tabindex="442" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff38" name="cutoff38"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-39">
+						<th>Finger hole 39</th>
+						<td><input type="text" class="form-control" id="cents39" name="cents39" tabindex="39" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam39" name="diam39" tabindex="140" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result39" name="result39" tabindex="241" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing39" name="spacing39" tabindex="342" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq39" name="freq39" tabindex="443" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff39" name="cutoff39"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-40">
+						<th>Finger hole 40</th>
+						<td><input type="text" class="form-control" id="cents40" name="cents40" tabindex="40" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam40" name="diam40" tabindex="141" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result40" name="result40" tabindex="242" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing40" name="spacing40" tabindex="343" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq40" name="freq40" tabindex="444" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff40" name="cutoff40"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-41">
+						<th>Finger hole 41</th>
+						<td><input type="text" class="form-control" id="cents41" name="cents41" tabindex="41" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam41" name="diam41" tabindex="142" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result41" name="result41" tabindex="243" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing41" name="spacing41" tabindex="344" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq41" name="freq41" tabindex="445" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff41" name="cutoff41"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-42">
+						<th>Finger hole 42</th>
+						<td><input type="text" class="form-control" id="cents42" name="cents42" tabindex="42" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam42" name="diam42" tabindex="143" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result42" name="result42" tabindex="244" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing42" name="spacing42" tabindex="345" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq42" name="freq42" tabindex="446" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff42" name="cutoff42"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-43">
+						<th>Finger hole 43</th>
+						<td><input type="text" class="form-control" id="cents43" name="cents43" tabindex="43" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam43" name="diam43" tabindex="144" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result43" name="result43" tabindex="245" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing43" name="spacing43" tabindex="346" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq43" name="freq43" tabindex="447" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff43" name="cutoff43"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-44">
+						<th>Finger hole 44</th>
+						<td><input type="text" class="form-control" id="cents44" name="cents44" tabindex="44" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam44" name="diam44" tabindex="145" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result44" name="result44" tabindex="246" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing44" name="spacing44" tabindex="347" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq44" name="freq44" tabindex="448" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff44" name="cutoff44"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-45">
+						<th>Finger hole 45</th>
+						<td><input type="text" class="form-control" id="cents45" name="cents45" tabindex="45" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam45" name="diam45" tabindex="146" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result45" name="result45" tabindex="247" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing45" name="spacing45" tabindex="348" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq45" name="freq45" tabindex="449" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff45" name="cutoff45"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-46">
+						<th>Finger hole 46</th>
+						<td><input type="text" class="form-control" id="cents46" name="cents46" tabindex="46" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam46" name="diam46" tabindex="147" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result46" name="result46" tabindex="248" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing46" name="spacing46" tabindex="349" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq46" name="freq46" tabindex="450" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff46" name="cutoff46"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-47">
+						<th>Finger hole 47</th>
+						<td><input type="text" class="form-control" id="cents47" name="cents47" tabindex="47" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam47" name="diam47" tabindex="148" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result47" name="result47" tabindex="249" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing47" name="spacing47" tabindex="350" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq47" name="freq47" tabindex="451" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff47" name="cutoff47"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-48">
+						<th>Finger hole 48</th>
+						<td><input type="text" class="form-control" id="cents48" name="cents48" tabindex="48" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam48" name="diam48" tabindex="149" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result48" name="result48" tabindex="250" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing48" name="spacing48" tabindex="351" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq48" name="freq48" tabindex="452" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff48" name="cutoff48"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-49">
+						<th>Finger hole 49</th>
+						<td><input type="text" class="form-control" id="cents49" name="cents49" tabindex="49" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam49" name="diam49" tabindex="150" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result49" name="result49" tabindex="251" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing49" name="spacing49" tabindex="352" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq49" name="freq49" tabindex="453" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff49" name="cutoff49"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-50">
+						<th>Finger hole 50</th>
+						<td><input type="text" class="form-control" id="cents50" name="cents50" tabindex="50" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam50" name="diam50" tabindex="151" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result50" name="result50" tabindex="252" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing50" name="spacing50" tabindex="353" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq50" name="freq50" tabindex="454" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff50" name="cutoff50"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-51">
+						<th>Finger hole 51</th>
+						<td><input type="text" class="form-control" id="cents51" name="cents51" tabindex="51" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam51" name="diam51" tabindex="152" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result51" name="result51" tabindex="253" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing51" name="spacing51" tabindex="354" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq51" name="freq51" tabindex="455" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff51" name="cutoff51"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-52">
+						<th>Finger hole 52</th>
+						<td><input type="text" class="form-control" id="cents52" name="cents52" tabindex="52" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam52" name="diam52" tabindex="153" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result52" name="result52" tabindex="254" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing52" name="spacing52" tabindex="355" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq52" name="freq52" tabindex="456" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff52" name="cutoff52"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-53">
+						<th>Finger hole 53</th>
+						<td><input type="text" class="form-control" id="cents53" name="cents53" tabindex="53" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam53" name="diam53" tabindex="154" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result53" name="result53" tabindex="255" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing53" name="spacing53" tabindex="356" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq53" name="freq53" tabindex="457" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff53" name="cutoff53"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-54">
+						<th>Finger hole 54</th>
+						<td><input type="text" class="form-control" id="cents54" name="cents54" tabindex="54" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam54" name="diam54" tabindex="155" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result54" name="result54" tabindex="256" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing54" name="spacing54" tabindex="357" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq54" name="freq54" tabindex="458" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff54" name="cutoff54"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-55">
+						<th>Finger hole 55</th>
+						<td><input type="text" class="form-control" id="cents55" name="cents55" tabindex="55" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam55" name="diam55" tabindex="156" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result55" name="result55" tabindex="257" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing55" name="spacing55" tabindex="358" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq55" name="freq55" tabindex="459" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff55" name="cutoff55"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-56">
+						<th>Finger hole 56</th>
+						<td><input type="text" class="form-control" id="cents56" name="cents56" tabindex="56" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam56" name="diam56" tabindex="157" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result56" name="result56" tabindex="258" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing56" name="spacing56" tabindex="359" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq56" name="freq56" tabindex="460" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff56" name="cutoff56"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-57">
+						<th>Finger hole 57</th>
+						<td><input type="text" class="form-control" id="cents57" name="cents57" tabindex="57" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam57" name="diam57" tabindex="158" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result57" name="result57" tabindex="259" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing57" name="spacing57" tabindex="360" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq57" name="freq57" tabindex="461" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff57" name="cutoff57"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-58">
+						<th>Finger hole 58</th>
+						<td><input type="text" class="form-control" id="cents58" name="cents58" tabindex="58" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam58" name="diam58" tabindex="159" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result58" name="result58" tabindex="260" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing58" name="spacing58" tabindex="361" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq58" name="freq58" tabindex="462" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff58" name="cutoff58"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-59">
+						<th>Finger hole 59</th>
+						<td><input type="text" class="form-control" id="cents59" name="cents59" tabindex="59" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam59" name="diam59" tabindex="160" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result59" name="result59" tabindex="261" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing59" name="spacing59" tabindex="362" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq59" name="freq59" tabindex="463" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff59" name="cutoff59"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-60">
+						<th>Finger hole 60</th>
+						<td><input type="text" class="form-control" id="cents60" name="cents60" tabindex="60" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam60" name="diam60" tabindex="161" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result60" name="result60" tabindex="262" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing60" name="spacing60" tabindex="363" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq60" name="freq60" tabindex="464" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff60" name="cutoff60"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-61">
+						<th>Finger hole 61</th>
+						<td><input type="text" class="form-control" id="cents61" name="cents61" tabindex="61" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam61" name="diam61" tabindex="162" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result61" name="result61" tabindex="263" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing61" name="spacing61" tabindex="364" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq61" name="freq61" tabindex="465" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff61" name="cutoff61"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-62">
+						<th>Finger hole 62</th>
+						<td><input type="text" class="form-control" id="cents62" name="cents62" tabindex="62" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam62" name="diam62" tabindex="163" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result62" name="result62" tabindex="264" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing62" name="spacing62" tabindex="365" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq62" name="freq62" tabindex="466" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff62" name="cutoff62"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-63">
+						<th>Finger hole 63</th>
+						<td><input type="text" class="form-control" id="cents63" name="cents63" tabindex="63" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam63" name="diam63" tabindex="164" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result63" name="result63" tabindex="265" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing63" name="spacing63" tabindex="366" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq63" name="freq63" tabindex="467" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff63" name="cutoff63"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-64">
+						<th>Finger hole 64</th>
+						<td><input type="text" class="form-control" id="cents64" name="cents64" tabindex="64" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam64" name="diam64" tabindex="165" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result64" name="result64" tabindex="266" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing64" name="spacing64" tabindex="367" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq64" name="freq64" tabindex="468" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff64" name="cutoff64"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-65">
+						<th>Finger hole 65</th>
+						<td><input type="text" class="form-control" id="cents65" name="cents65" tabindex="65" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam65" name="diam65" tabindex="166" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result65" name="result65" tabindex="267" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing65" name="spacing65" tabindex="368" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq65" name="freq65" tabindex="469" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff65" name="cutoff65"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-66">
+						<th>Finger hole 66</th>
+						<td><input type="text" class="form-control" id="cents66" name="cents66" tabindex="66" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam66" name="diam66" tabindex="167" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result66" name="result66" tabindex="268" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing66" name="spacing66" tabindex="369" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq66" name="freq66" tabindex="470" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff66" name="cutoff66"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-67">
+						<th>Finger hole 67</th>
+						<td><input type="text" class="form-control" id="cents67" name="cents67" tabindex="67" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam67" name="diam67" tabindex="168" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result67" name="result67" tabindex="269" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing67" name="spacing67" tabindex="370" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq67" name="freq67" tabindex="471" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff67" name="cutoff67"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-68">
+						<th>Finger hole 68</th>
+						<td><input type="text" class="form-control" id="cents68" name="cents68" tabindex="68" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam68" name="diam68" tabindex="169" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result68" name="result68" tabindex="270" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing68" name="spacing68" tabindex="371" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq68" name="freq68" tabindex="472" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff68" name="cutoff68"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-69">
+						<th>Finger hole 69</th>
+						<td><input type="text" class="form-control" id="cents69" name="cents69" tabindex="69" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam69" name="diam69" tabindex="170" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result69" name="result69" tabindex="271" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing69" name="spacing69" tabindex="372" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq69" name="freq69" tabindex="473" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff69" name="cutoff69"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-70">
+						<th>Finger hole 70</th>
+						<td><input type="text" class="form-control" id="cents70" name="cents70" tabindex="70" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam70" name="diam70" tabindex="171" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result70" name="result70" tabindex="272" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing70" name="spacing70" tabindex="373" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq70" name="freq70" tabindex="474" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff70" name="cutoff70"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-71">
+						<th>Finger hole 71</th>
+						<td><input type="text" class="form-control" id="cents71" name="cents71" tabindex="71" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam71" name="diam71" tabindex="172" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result71" name="result71" tabindex="273" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing71" name="spacing71" tabindex="374" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq71" name="freq71" tabindex="475" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff71" name="cutoff71"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-72">
+						<th>Finger hole 72</th>
+						<td><input type="text" class="form-control" id="cents72" name="cents72" tabindex="72" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam72" name="diam72" tabindex="173" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result72" name="result72" tabindex="274" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing72" name="spacing72" tabindex="375" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq72" name="freq72" tabindex="476" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff72" name="cutoff72"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-73">
+						<th>Finger hole 73</th>
+						<td><input type="text" class="form-control" id="cents73" name="cents73" tabindex="73" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam73" name="diam73" tabindex="174" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result73" name="result73" tabindex="275" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing73" name="spacing73" tabindex="376" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq73" name="freq73" tabindex="477" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff73" name="cutoff73"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-74">
+						<th>Finger hole 74</th>
+						<td><input type="text" class="form-control" id="cents74" name="cents74" tabindex="74" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam74" name="diam74" tabindex="175" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result74" name="result74" tabindex="276" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing74" name="spacing74" tabindex="377" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq74" name="freq74" tabindex="478" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff74" name="cutoff74"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-75">
+						<th>Finger hole 75</th>
+						<td><input type="text" class="form-control" id="cents75" name="cents75" tabindex="75" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam75" name="diam75" tabindex="176" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result75" name="result75" tabindex="277" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing75" name="spacing75" tabindex="378" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq75" name="freq75" tabindex="479" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff75" name="cutoff75"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-76">
+						<th>Finger hole 76</th>
+						<td><input type="text" class="form-control" id="cents76" name="cents76" tabindex="76" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam76" name="diam76" tabindex="177" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result76" name="result76" tabindex="278" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing76" name="spacing76" tabindex="379" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq76" name="freq76" tabindex="480" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff76" name="cutoff76"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-77">
+						<th>Finger hole 77</th>
+						<td><input type="text" class="form-control" id="cents77" name="cents77" tabindex="77" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam77" name="diam77" tabindex="178" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result77" name="result77" tabindex="279" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing77" name="spacing77" tabindex="380" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq77" name="freq77" tabindex="481" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff77" name="cutoff77"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-78">
+						<th>Finger hole 78</th>
+						<td><input type="text" class="form-control" id="cents78" name="cents78" tabindex="78" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam78" name="diam78" tabindex="179" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result78" name="result78" tabindex="280" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing78" name="spacing78" tabindex="381" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq78" name="freq78" tabindex="482" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff78" name="cutoff78"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-79">
+						<th>Finger hole 79</th>
+						<td><input type="text" class="form-control" id="cents79" name="cents79" tabindex="79" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam79" name="diam79" tabindex="180" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result79" name="result79" tabindex="281" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing79" name="spacing79" tabindex="382" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq79" name="freq79" tabindex="483" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff79" name="cutoff79"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-80">
+						<th>Finger hole 80</th>
+						<td><input type="text" class="form-control" id="cents80" name="cents80" tabindex="80" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam80" name="diam80" tabindex="181" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result80" name="result80" tabindex="282" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing80" name="spacing80" tabindex="383" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq80" name="freq80" tabindex="484" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff80" name="cutoff80"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-81">
+						<th>Finger hole 81</th>
+						<td><input type="text" class="form-control" id="cents81" name="cents81" tabindex="81" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam81" name="diam81" tabindex="182" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result81" name="result81" tabindex="283" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing81" name="spacing81" tabindex="384" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq81" name="freq81" tabindex="485" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff81" name="cutoff81"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-82">
+						<th>Finger hole 82</th>
+						<td><input type="text" class="form-control" id="cents82" name="cents82" tabindex="82" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam82" name="diam82" tabindex="183" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result82" name="result82" tabindex="284" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing82" name="spacing82" tabindex="385" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq82" name="freq82" tabindex="486" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff82" name="cutoff82"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-83">
+						<th>Finger hole 83</th>
+						<td><input type="text" class="form-control" id="cents83" name="cents83" tabindex="83" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam83" name="diam83" tabindex="184" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result83" name="result83" tabindex="285" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing83" name="spacing83" tabindex="386" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq83" name="freq83" tabindex="487" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff83" name="cutoff83"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-84">
+						<th>Finger hole 84</th>
+						<td><input type="text" class="form-control" id="cents84" name="cents84" tabindex="84" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam84" name="diam84" tabindex="185" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result84" name="result84" tabindex="286" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing84" name="spacing84" tabindex="387" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq84" name="freq84" tabindex="488" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff84" name="cutoff84"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-85">
+						<th>Finger hole 85</th>
+						<td><input type="text" class="form-control" id="cents85" name="cents85" tabindex="85" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam85" name="diam85" tabindex="186" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result85" name="result85" tabindex="287" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing85" name="spacing85" tabindex="388" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq85" name="freq85" tabindex="489" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff85" name="cutoff85"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-86">
+						<th>Finger hole 86</th>
+						<td><input type="text" class="form-control" id="cents86" name="cents86" tabindex="86" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam86" name="diam86" tabindex="187" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result86" name="result86" tabindex="288" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing86" name="spacing86" tabindex="389" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq86" name="freq86" tabindex="490" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff86" name="cutoff86"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-87">
+						<th>Finger hole 87</th>
+						<td><input type="text" class="form-control" id="cents87" name="cents87" tabindex="87" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam87" name="diam87" tabindex="188" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result87" name="result87" tabindex="289" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing87" name="spacing87" tabindex="390" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq87" name="freq87" tabindex="491" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff87" name="cutoff87"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-88">
+						<th>Finger hole 88</th>
+						<td><input type="text" class="form-control" id="cents88" name="cents88" tabindex="88" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam88" name="diam88" tabindex="189" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result88" name="result88" tabindex="290" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing88" name="spacing88" tabindex="391" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq88" name="freq88" tabindex="492" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff88" name="cutoff88"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-89">
+						<th>Finger hole 89</th>
+						<td><input type="text" class="form-control" id="cents89" name="cents89" tabindex="89" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam89" name="diam89" tabindex="190" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result89" name="result89" tabindex="291" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing89" name="spacing89" tabindex="392" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq89" name="freq89" tabindex="493" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff89" name="cutoff89"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-90">
+						<th>Finger hole 90</th>
+						<td><input type="text" class="form-control" id="cents90" name="cents90" tabindex="90" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam90" name="diam90" tabindex="191" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result90" name="result90" tabindex="292" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing90" name="spacing90" tabindex="393" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq90" name="freq90" tabindex="494" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff90" name="cutoff90"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-91">
+						<th>Finger hole 91</th>
+						<td><input type="text" class="form-control" id="cents91" name="cents91" tabindex="91" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam91" name="diam91" tabindex="192" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result91" name="result91" tabindex="293" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing91" name="spacing91" tabindex="394" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq91" name="freq91" tabindex="495" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff91" name="cutoff91"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-92">
+						<th>Finger hole 92</th>
+						<td><input type="text" class="form-control" id="cents92" name="cents92" tabindex="92" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam92" name="diam92" tabindex="193" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result92" name="result92" tabindex="294" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing92" name="spacing92" tabindex="395" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq92" name="freq92" tabindex="496" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff92" name="cutoff92"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-93">
+						<th>Finger hole 93</th>
+						<td><input type="text" class="form-control" id="cents93" name="cents93" tabindex="93" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam93" name="diam93" tabindex="194" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result93" name="result93" tabindex="295" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing93" name="spacing93" tabindex="396" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq93" name="freq93" tabindex="497" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff93" name="cutoff93"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-94">
+						<th>Finger hole 94</th>
+						<td><input type="text" class="form-control" id="cents94" name="cents94" tabindex="94" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam94" name="diam94" tabindex="195" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result94" name="result94" tabindex="296" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing94" name="spacing94" tabindex="397" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq94" name="freq94" tabindex="498" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff94" name="cutoff94"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-95">
+						<th>Finger hole 95</th>
+						<td><input type="text" class="form-control" id="cents95" name="cents95" tabindex="95" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam95" name="diam95" tabindex="196" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result95" name="result95" tabindex="297" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing95" name="spacing95" tabindex="398" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq95" name="freq95" tabindex="499" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff95" name="cutoff95"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-96">
+						<th>Finger hole 96</th>
+						<td><input type="text" class="form-control" id="cents96" name="cents96" tabindex="96" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam96" name="diam96" tabindex="197" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result96" name="result96" tabindex="298" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing96" name="spacing96" tabindex="399" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq96" name="freq96" tabindex="500" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff96" name="cutoff96"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-97">
+						<th>Finger hole 97</th>
+						<td><input type="text" class="form-control" id="cents97" name="cents97" tabindex="97" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam97" name="diam97" tabindex="198" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result97" name="result97" tabindex="299" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing97" name="spacing97" tabindex="400" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq97" name="freq97" tabindex="501" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff97" name="cutoff97"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-98">
+						<th>Finger hole 98</th>
+						<td><input type="text" class="form-control" id="cents98" name="cents98" tabindex="98" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam98" name="diam98" tabindex="199" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result98" name="result98" tabindex="300" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing98" name="spacing98" tabindex="401" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq98" name="freq98" tabindex="502" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff98" name="cutoff98"></td>
+					</tr>
+									<tr class="hole-row" id="hole-row-99">
+						<th>Finger hole 99</th>
+						<td><input type="text" class="form-control" id="cents99" name="cents99" tabindex="99" /></td>
+						<td><input type="text" class="form-control diameter measure 3d-info" id="diam99" name="diam99" tabindex="200" /></td>
+						<td><input type="text" class="form-control distance measure 3d-info" readonly id="result99" name="result99" tabindex="301" /></td>
+						<td class="spacing"><input type="text" class="form-control measure" readonly id="spacing99" name="spacing99" tabindex="402" /></td>
+						<td class="freq"><input type="text" class="form-control" readonly id="freq99" name="freq99" tabindex="503" /></td>
+						<td class="freq"><input type="text" class="form-control cutoff" readonly id="cutoff99" name="cutoff99"></td>
+					</tr>
+								<tr>
+					<th>End of flute
+					<span class="num-holes"><a href="#" class="btn btn-default dec-holes"><i class="glyphicon glyphicon-minus"></i></a>
+								<a href="#" class="btn btn-default inc-holes"><i class="glyphicon glyphicon-plus"></i></a></span></th>
+					<td><input type="text" class="form-control" id="centsEnd" name="centsEnd" tabindex="100" /></td>
+					<td><input type="text" class="form-control hidden" id="cents100" name="cents100" /></td>
+					<td><input type="text" class="form-control distance measure" readonly id="resultEnd" name="resultEnd" tabindex="302" /></td>
+					<td class="spacing"></td>
+					<td class="freq"><input type="text" class="form-control" readonly id="freqEnd" name="freqEnd"></td>
+					<td class="freq"></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label for="fHoles" class="col-xs-7 control-label">Finger holes</label>
+					<div class="col-xs-5">
+						<select class="form-control 3d-info" id="fHoles" name="fHoles">
+															<option>0</option>
+															<option>1</option>
+															<option>2</option>
+															<option>3</option>
+															<option>4</option>
+															<option>5</option>
+															<option>6</option>
+															<option selected>7</option>
+															<option>8</option>
+															<option>9</option>
+															<option>10</option>
+															<option>11</option>
+															<option>12</option>
+															<option>13</option>
+															<option>14</option>
+															<option>15</option>
+															<option>16</option>
+															<option>17</option>
+															<option>18</option>
+															<option>19</option>
+															<option>20</option>
+															<option>21</option>
+															<option>22</option>
+															<option>23</option>
+															<option>24</option>
+															<option>25</option>
+															<option>26</option>
+															<option>27</option>
+															<option>28</option>
+															<option>29</option>
+															<option>30</option>
+															<option>31</option>
+															<option>32</option>
+															<option>33</option>
+															<option>34</option>
+															<option>35</option>
+															<option>36</option>
+															<option>37</option>
+															<option>38</option>
+															<option>39</option>
+															<option>40</option>
+															<option>41</option>
+															<option>42</option>
+															<option>43</option>
+															<option>44</option>
+															<option>45</option>
+															<option>46</option>
+															<option>47</option>
+															<option>48</option>
+															<option>49</option>
+															<option>50</option>
+															<option>51</option>
+															<option>52</option>
+															<option>53</option>
+															<option>54</option>
+															<option>55</option>
+															<option>56</option>
+															<option>57</option>
+															<option>58</option>
+															<option>59</option>
+															<option>60</option>
+															<option>61</option>
+															<option>62</option>
+															<option>63</option>
+															<option>64</option>
+															<option>65</option>
+															<option>66</option>
+															<option>67</option>
+															<option>68</option>
+															<option>69</option>
+															<option>70</option>
+															<option>71</option>
+															<option>72</option>
+															<option>73</option>
+															<option>74</option>
+															<option>75</option>
+															<option>76</option>
+															<option>77</option>
+															<option>78</option>
+															<option>79</option>
+															<option>80</option>
+															<option>81</option>
+															<option>82</option>
+															<option>83</option>
+															<option>84</option>
+															<option>85</option>
+															<option>86</option>
+															<option>87</option>
+															<option>88</option>
+															<option>89</option>
+															<option>90</option>
+															<option>91</option>
+															<option>92</option>
+															<option>93</option>
+															<option>94</option>
+															<option>95</option>
+															<option>96</option>
+															<option>97</option>
+															<option>98</option>
+															<option>99</option>
+													</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="keyNote" class="col-xs-7 control-label">Key</label>
+					<div class="col-xs-5">
+						<select class="form-control" id="keyNote" name="keyNote">
+															<option value="91">G6 - 1568Hz</option>
+															<option value="90">F#6 - 1480Hz</option>
+															<option value="89">F6 - 1397Hz</option>
+															<option value="88">E6 - 1319Hz</option>
+															<option value="87">D#6 - 1245Hz</option>
+															<option value="86">D6 - 1175Hz</option>
+															<option value="85">C#6 - 1109Hz</option>
+															<option value="84">C6 - 1047Hz</option>
+															<option value="83">B5 - 988Hz</option>
+															<option value="82">A#5 - 932Hz</option>
+															<option value="81">A5 - 880Hz</option>
+															<option value="80">G#5 - 831Hz</option>
+															<option value="79">G5 - 784Hz</option>
+															<option value="78">F#5 - 740Hz</option>
+															<option value="77">F5 - 698Hz</option>
+															<option value="76">E5 - 659Hz</option>
+															<option value="75">D#5 - 622Hz</option>
+															<option value="74">D5 - 587Hz</option>
+															<option value="73">C#5 - 554Hz</option>
+															<option value="72" selected>C5 - 523Hz</option>
+															<option value="71">B4 - 494Hz</option>
+															<option value="70">A#4 - 466Hz</option>
+															<option value="69">A4 - 440Hz</option>
+															<option value="68">G#4 - 415Hz</option>
+															<option value="67">G4 - 392Hz</option>
+															<option value="66">F#4 - 370Hz</option>
+															<option value="65">F4 - 349Hz</option>
+															<option value="64">E4 - 330Hz</option>
+															<option value="63">D#4 - 311Hz</option>
+															<option value="62">D4 - 294Hz</option>
+															<option value="61">C#4 - 277Hz</option>
+															<option value="60">C4 - 262Hz</option>
+															<option value="59">B3 - 247Hz</option>
+															<option value="58">A#3 - 233Hz</option>
+															<option value="57">A3 - 220Hz</option>
+															<option value="56">G#3 - 208Hz</option>
+															<option value="55">G3 - 196Hz</option>
+													</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="keyFT" class="col-xs-7 control-label">Key fine tune</label>
+					<div class="col-xs-5">
+						<select class="form-control" id="keyFT" name="keyFT">
+															<option value="50">50 cents</option>
+															<option value="49">49 cents</option>
+															<option value="48">48 cents</option>
+															<option value="47">47 cents</option>
+															<option value="46">46 cents</option>
+															<option value="45">45 cents</option>
+															<option value="44">44 cents</option>
+															<option value="43">43 cents</option>
+															<option value="42">42 cents</option>
+															<option value="41">41 cents</option>
+															<option value="40">40 cents</option>
+															<option value="39">39 cents</option>
+															<option value="38">38 cents</option>
+															<option value="37">37 cents</option>
+															<option value="36">36 cents</option>
+															<option value="35">35 cents</option>
+															<option value="34">34 cents</option>
+															<option value="33">33 cents</option>
+															<option value="32">32 cents</option>
+															<option value="31">31 cents</option>
+															<option value="30">30 cents</option>
+															<option value="29">29 cents</option>
+															<option value="28">28 cents</option>
+															<option value="27">27 cents</option>
+															<option value="26">26 cents</option>
+															<option value="25">25 cents</option>
+															<option value="24">24 cents</option>
+															<option value="23">23 cents</option>
+															<option value="22">22 cents</option>
+															<option value="21">21 cents</option>
+															<option value="20">20 cents</option>
+															<option value="19">19 cents</option>
+															<option value="18">18 cents</option>
+															<option value="17">17 cents</option>
+															<option value="16">16 cents</option>
+															<option value="15">15 cents</option>
+															<option value="14">14 cents</option>
+															<option value="13">13 cents</option>
+															<option value="12">12 cents</option>
+															<option value="11">11 cents</option>
+															<option value="10">10 cents</option>
+															<option value="9">9 cents</option>
+															<option value="8">8 cents</option>
+															<option value="7">7 cents</option>
+															<option value="6">6 cents</option>
+															<option value="5">5 cents</option>
+															<option value="4">4 cents</option>
+															<option value="3">3 cents</option>
+															<option value="2">2 cents</option>
+															<option value="1">1 cents</option>
+															<option value="0" selected>0 cents</option>
+															<option value="-1">-1 cents</option>
+															<option value="-2">-2 cents</option>
+															<option value="-3">-3 cents</option>
+															<option value="-4">-4 cents</option>
+															<option value="-5">-5 cents</option>
+															<option value="-6">-6 cents</option>
+															<option value="-7">-7 cents</option>
+															<option value="-8">-8 cents</option>
+															<option value="-9">-9 cents</option>
+															<option value="-10">-10 cents</option>
+															<option value="-11">-11 cents</option>
+															<option value="-12">-12 cents</option>
+															<option value="-13">-13 cents</option>
+															<option value="-14">-14 cents</option>
+															<option value="-15">-15 cents</option>
+															<option value="-16">-16 cents</option>
+															<option value="-17">-17 cents</option>
+															<option value="-18">-18 cents</option>
+															<option value="-19">-19 cents</option>
+															<option value="-20">-20 cents</option>
+															<option value="-21">-21 cents</option>
+															<option value="-22">-22 cents</option>
+															<option value="-23">-23 cents</option>
+															<option value="-24">-24 cents</option>
+															<option value="-25">-25 cents</option>
+															<option value="-26">-26 cents</option>
+															<option value="-27">-27 cents</option>
+															<option value="-28">-28 cents</option>
+															<option value="-29">-29 cents</option>
+															<option value="-30">-30 cents</option>
+															<option value="-31">-31 cents</option>
+															<option value="-32">-32 cents</option>
+															<option value="-33">-33 cents</option>
+															<option value="-34">-34 cents</option>
+															<option value="-35">-35 cents</option>
+															<option value="-36">-36 cents</option>
+															<option value="-37">-37 cents</option>
+															<option value="-38">-38 cents</option>
+															<option value="-39">-39 cents</option>
+															<option value="-40">-40 cents</option>
+															<option value="-41">-41 cents</option>
+															<option value="-42">-42 cents</option>
+															<option value="-43">-43 cents</option>
+															<option value="-44">-44 cents</option>
+															<option value="-45">-45 cents</option>
+															<option value="-46">-46 cents</option>
+															<option value="-47">-47 cents</option>
+															<option value="-48">-48 cents</option>
+															<option value="-49">-49 cents</option>
+															<option value="-50">-50 cents</option>
+													</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<hr class="visible-xs-block" />
+				<div class="form-group">
+					<label for="borD" class="col-xs-7 control-label">Inside Diameter</label>
+					<div class="col-xs-5">
+						<input type="text" class="form-control measure 3d-info" id="borD" name="borD" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="walW" class="col-xs-7 control-label">Wall thickness</label>
+					<div class="col-xs-5">
+						<input type="text" class="form-control measure 3d-info" id="walW" name="walW" data-extra-dp="1" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="lipCov" class="col-xs-7 control-label">Lip cover (%)</label>
+					<div class="col-xs-5">
+						<input type="text" class="form-control" id="lipCov" name="lipCov" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<hr class="visible-xs-block" />
+				<div class="form-group">
+					<label for="unitMult" class="col-xs-7 control-label 3d-info">Units</label>
+					<div class="col-xs-5">
+						<select class="form-control text-input" id="unitMult" name="unitMult">
+							<option value="1.0" selected>mm</option>
+							<option value="10.0">cm</option>
+							<option value="25.4">inches</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="decPl" class="col-xs-7 control-label">Decimal places</label>
+					<div class="col-xs-5">
+						<select class="form-control" id="decPl" name="decPl">
+							<option>0</option>
+							<option selected>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+							<div class="checkbox">
+								<label><input type="checkbox" id="showSpc" name="showSpc" value="1" /> Spacing</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" id="showFreqs" name="showFreqs" value="1" /> Frequencies</label>
+							</div>
+						<div class="pull-right">
+							<a id="show-3d" class="btn btn-primary">3D</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr class="hidden-xs" />
+		</div>
+	</form>
+</div>
+<br />
+<br />
+<br />
+
+<!-- Modal -->
+<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Flutomat</h4>
+			</div>
+			<div class="modal-body">
+				<div id="lipsum">
+					<p>Working out where to put the holes on a simple flute is surprisingly complex. This web app is based on Pete Kosel's venerable <a href="http://11wall-west.com/~ph_kosel/flutomat.html">Flutomat Javascript Flute Calculator</a> - which in turn is based on the work of <a href="http://acousticalsociety.org/about/awards/gold/12_10_10_benade">Arthur Benade</a>, a pioneer in the field of musical acoustics.</p>
+					<p>Start by deciding how many holes the flute will have, and what key you want it to be in (or choose a note to call the key note). Now input how many cents (hundredths of a semitone) you want each open finger hole to sound, relative to that key note - within the lowest playing register. You will also need to input the inside diameter, wall thickness and diameters for all the holes. Flutomat will then tell you where to put the holes (in the <strong>Distance</strong> column).</p>
+					<p>The <strong>Lip cover (%)</strong> field is important for fine-tuning the distance of the blow hole from the end of the flute. In practice, different players will prefer covering different amounts of the blow hole with their lips. This makes the blow hole effectively smaller. Changing this quantity will only affect the position of the blow hole - not the other holes. If you have an existing cylindrical flute you like the sound of, it may be useful to try to model it roughly within Flutomat, and adjusting the lip cover percentage, until the blow hole location is in a similar place as for your flute. This will also tell you what lip cover figure to use, when making other, similarly sized flutes.</p>
+					<p>A note about making flutes from PVC pipe: this is an excellent material to experiment with making flutes. Don't forget to wear a dust mask when sanding the holes.</p>
+					<p>N.B. I mostly play the North Indian bansuri style of flute, with large finger holes and key note played with three finger holes closed. Western folk flutes tend to use six fingers down (a perfect fourth down, or fifth up) as the key note. So what I call a C flute, others will think of as a G flute, etc. This may be worth considering when viewing the following examples.</p>
+					<h5>Successfully made / measured examples:</h5>
+					<ul>
+						<li><a href="#" onclick="getURLVars('title=7-hole+C5&diamEmb=10&cents1=601&diam1=8&cents2=386&diam2=8.5&cents3=204&diam3=9&cents4=0&diam4=7&cents5=-102&diam5=9.5&cents6=-309&diam6=10&cents7=-498&diam7=5.5&cents8=-599&diam8=11.4561&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-599&cents13=-1509&fHoles=7&keyNote=72&keyFT=0&borD=19&walW=1.25&lipCov=0&unitMult=1.0&decPl=1&showSpc=0&showFreqs=0');$('.close-modal').click();">7-hole C5 (default)</a></li>
+						<li><a href="#" onclick="getURLVars('title=D5+22mm+Barrier+Pipe+Bansuri&diamEmb=10&cents1=601&diam1=10&cents2=386&diam2=10&cents3=204&diam3=10&cents4=0&diam4=6.5&cents5=-102&diam5=10&cents6=-309&diam6=8.5&cents7=-498&diam7=6.5&cents8=-599&diam8=11.4561&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-599&cents13=-1509&fHoles=7&keyNote=74&keyFT=0&borD=17&walW=2.5&lipCov=0.9&unitMult=1.0&decPl=1&showSpc=1&showFreqs=0');$('.close-modal').click();">D5 22mm Barrier Pipe Bansuri</a></li>
+						<li><a href="#" onclick="getURLVars('title=E5+PVC+17mm+bore&diamEmb=10&cents1=601&diam1=8&cents2=386&diam2=8&cents3=204&diam3=8&cents4=0&diam4=6&cents5=-102&diam5=8.5&cents6=-309&diam6=6&cents7=-498&diam7=4.5&cents8=-599&diam8=11.4561&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-599&cents13=-1509&fHoles=7&keyNote=76&keyFT=0&borD=17&walW=2.5&lipCov=3&unitMult=1.0&decPl=1&showSpc=0&showFreqs=0');$('.close-modal').click();">E5 PVC 17mm bore</a></li>
+						<li><a href="#" onclick="getURLVars('title=C+overtone+flute&diamEmb=9.5&cents1=0&diam1=8.5&cents2=-200&diam2=9&cents3=-300&diam3=9.5&cents4=-500&diam4=7&cents5=-700&diam5=10&cents6=-800&diam6=8&cents7=-1000&diam7=4&cents8=-1200&diam8=11.4561&cents9=-1400&diam9=11.0976&cents10=-1500&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=0&cents13=-1509&fHoles=0&keyNote=60&keyFT=0&borD=11&walW=2&lipCov=14.8&unitMult=1.0&decPl=1&showSpc=0&showFreqs=0');$('.close-modal').click();">C overtone flute</a></li>
+						<li><a href="#" onclick="getURLVars('title=7-hole+C6+PVC&diamEmb=8.5&cents1=601&diam1=4.5&cents2=386&diam2=5&cents3=204&diam3=5.5&cents4=0&diam4=4.5&cents5=-102&diam5=8.5&cents6=-309&diam6=7&cents7=-498&diam7=5&cents8=-599&diam8=11.4561&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-599&cents13=-1509&fHoles=7&keyNote=84&keyFT=0&borD=11&walW=2&lipCov=21&unitMult=1.0&decPl=1&showSpc=0&showFreqs=0');$('.close-modal').click();">7-hole C6 PVC</a></li>
+						<li><a href="#" onclick="getURLVars('title=7-hole+A4&diamEmb=10&cents1=601&diam1=8.5&cents2=386&diam2=9&cents3=204&diam3=9.5&cents4=0&diam4=7&cents5=-102&diam5=10&cents6=-309&diam6=8&cents7=-498&diam7=4&cents8=-599&diam8=11.4561&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-599&cents13=-1509&fHoles=7&keyNote=69&keyFT=0&borD=19&walW=1.25&lipCov=0&unitMult=1.0&decPl=1&showSpc=0&showFreqs=0');$('.close-modal').click();">7-hole A4</a></li>
+						<li><a href="#" onclick="getURLVars('title=C5+wood+bansuri&diamEmb=10.56&cents1=601&diam1=10.24&cents2=386&diam2=10.45&cents3=204&diam3=10.31&cents4=0&diam4=8.91&cents5=-102&diam5=10.95&cents6=-309&diam6=8.56&cents7=-498&diam7=5.51&cents8=-599&diam8=11.4561&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-599&cents13=-1509&fHoles=7&keyNote=72&keyFT=0&borD=19&walW=1.25&lipCov=13&unitMult=1.0&decPl=2&showSpc=0&showFreqs=0');$('.close-modal').click();">C5 wood bansuri</a></li>
+						<li><a href="#" onclick="getURLVars('title=E4+wood+bansuri&diamEmb=12.5&cents1=601&diam1=11.5&cents2=386&diam2=12&cents3=204&diam3=11.5&cents4=0&diam4=12.2&cents5=-102&diam5=13&cents6=-309&diam6=10.8&cents7=-498&diam7=10.5&cents8=-580&diam8=10.9&cents9=-647&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-647&cents13=-1509&fHoles=8&keyNote=64&keyFT=0&borD=23&walW=3&lipCov=7&unitMult=1.0&decPl=2&showSpc=0&showFreqs=0');$('.close-modal').click();">E4 wood bansuri</a></li>
+						<li><a href="#" onclick="getURLVars('C6+wood+bansuri&diamEmb=7.5&cents1=601&diam1=6.5&cents2=386&diam2=6.5&cents3=204&diam3=6.5&cents4=0&diam4=6&cents5=-102&diam5=7&cents6=-309&diam6=6.7&cents7=-498&diam7=10.5&cents8=-599&diam8=10.9&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-498&cents13=-1509&fHoles=6&keyNote=84&keyFT=0&borD=10.7&walW=1.1&lipCov=18&unitMult=1.0&decPl=2&showSpc=0&showFreqs=0');$('.close-modal').click();">C6 wood bansuri</a></li>
+						<li><a href="#" onclick="getURLVars('title=A4+wood+bansuri&diamEmb=10.5&cents1=601&diam1=10.3&cents2=386&diam2=10.2&cents3=204&diam3=10.3&cents4=0&diam4=9.4&cents5=-102&diam5=11.5&cents6=-309&diam6=10&cents7=-498&diam7=8.5&cents8=-599&diam8=11.4561&cents9=-814&diam9=11.0976&cents10=-996&diam10=12.273&cents11=-1200&diam11=9.1133&cents12=-1302&diam12=12.7&centsEnd=-600&cents13=-1509&fHoles=7&keyNote=69&keyFT=0&borD=19&walW=1.25&lipCov=0&unitMult=1.0&decPl=1&showSpc=0&showFreqs=0');$('.close-modal').click();">A4 wood bansuri</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<iframe id="threed" allowfullscreen="true"></iframe>
+<button type="button" class="btn btn-primary close-threed">Close</button>
+
+</body>
+</html>
